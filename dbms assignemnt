@@ -1,0 +1,161 @@
+create table public."user" ("created_at" TIMESTAMP not null default now(),
+"updated_at" TIMESTAMP not null default now(),
+"deleted_at" TIMESTAMP,
+"id" uuid not null default uuid_generate_v4(),
+"name" character varying not null,
+"username" character varying not null,
+"password" character varying,
+"email" character varying,
+"phone_number" character varying,
+constraint "PK_3c2bc72f03fd5abbbc5ac169490" primary key ("id"));
+
+
+create table public."product" ("created_at" TIMESTAMP not null default now(),
+"updated_at" TIMESTAMP not null default now(),
+"deleted_at" TIMESTAMP,
+"id" uuid not null default uuid_generate_v4(),
+"name" character varying not null,
+"description" character varying not null,
+"price" integer not null,
+"sku" character varying,
+constraint "PK_3c2bc72f03fd5abbbc5ac169491" primary key ("id"));
+drop table "product";
+
+create table public."product_category"(
+"id" uuid not null default uuid_generate_v4(),
+"name" character varying,
+constraint "PK_3c2bc72f03fd5abbbc5ac169495" primary key ("id"));
+
+create table public."product_map_category"(
+"product_id" uuid not null,
+"category_id" uuid not null);
+
+create table public."address"("created_at" TIMESTAMP not null default now(),
+"updated_at" TIMESTAMP not null default now(),
+"deleted_at" TIMESTAMP,
+"id" uuid not null default uuid_generate_v4(),
+"street" character varying not null,
+"city" character varying not null,
+"state" character varying not null,
+"pincode" character varying not null,
+"user_id" uuid not null ,
+constraint "PK_3c2bc72f03fd5abbbc5ac169492" primary key ("id"));
+
+
+create table public."order"("created_at" TIMESTAMP not null default now(),
+"updated_at" TIMESTAMP not null default now(),
+"deleted_at" TIMESTAMP,
+"id" uuid not null default uuid_generate_v4(),
+"user_id" uuid not null,
+"address_id" uuid not null,
+constraint "PK_3c2bc72f03fd5abbbc5ac169493" primary key ("id"));
+drop table "order";
+
+create table public."order_product"(
+"order_id" uuid not null,
+"product_id" uuid not null,
+"count" integer);
+
+insert  into "product" ("name",
+"description",
+"price",
+"sku") values ('product1','description1',1000,'abcd123'),
+('product2','description2',2000,'abcd124'),
+('product3','description3',3000,'abcd125'),
+('product4','description4',4000,'abcd126'),
+('product5','description5',5000,'abcd127');
+
+insert into "product_category" ("name") values ('apparel'),('footwear'),('sports'),('casuals');
+insert into "product_map_category" values ('e200e241-6caf-4d14-a378-b14aeeb9f7b5','ba893ef5-bc97-4950-aeae-13b358a111c9');
+insert into "product_map_category" values ('e200e241-6caf-4d14-a378-b14aeeb9f7b5','0350c194-4903-474b-9641-66736d5a9bd4');
+insert into "address"("street","city","state","pincode","user_id") values ('street1','city1','state1','686513','ca4fd0f2-f4af-4ed3-8fcb-a0fde65aa71d'),
+('street2','city2','state2','686514','1a45bdf1-954f-4fb0-804c-ad8e2bceb255'),
+('street3','city3','state3','686515','6cc9a918-b857-43f5-8c8e-46fe15cd595f');
+
+insert into "order" ("user_id","address_id") values ('6e9b15a6-0310-4c25-8054-814117cd10ce','ca4fd0f2-f4af-4ed3-8fcb-a0fde65aa71d'),
+('d5ab9d2b-110c-453d-9528-cf6c2926c60a','1a45bdf1-954f-4fb0-804c-ad8e2bceb255'),
+('7a56ddaa-f198-48c1-98c8-d4eefb349cf5','6cc9a918-b857-43f5-8c8e-46fe15cd595f');
+
+insert into "order_product" values ('8c1818c6-3edd-42db-b0b8-5f0a8b62fb21','e200e241-6caf-4d14-a378-b14aeeb9f7b5',1),
+('b605e51f-2463-4443-bc2f-22961896e444','9baaee8c-7c75-4902-b8dc-3107fdcb4969',2),
+('dbefee04-83c8-403a-9246-1b8d9b0a0106','fa0369cc-1975-4631-9020-063b76323704',3);create table public."user" ("created_at" TIMESTAMP not null default now(),
+"updated_at" TIMESTAMP not null default now(),
+"deleted_at" TIMESTAMP,
+"id" uuid not null default uuid_generate_v4(),
+"name" character varying not null,
+"username" character varying not null,
+"password" character varying,
+"email" character varying,
+"phone_number" character varying,
+constraint "PK_3c2bc72f03fd5abbbc5ac169490" primary key ("id"));
+
+
+create table public."product" ("created_at" TIMESTAMP not null default now(),
+"updated_at" TIMESTAMP not null default now(),
+"deleted_at" TIMESTAMP,
+"id" uuid not null default uuid_generate_v4(),
+"name" character varying not null,
+"description" character varying not null,
+"price" integer not null,
+"sku" character varying,
+constraint "PK_3c2bc72f03fd5abbbc5ac169491" primary key ("id"));
+drop table "product";
+
+create table public."product_category"(
+"id" uuid not null default uuid_generate_v4(),
+"name" character varying,
+constraint "PK_3c2bc72f03fd5abbbc5ac169495" primary key ("id"));
+
+create table public."product_map_category"(
+"product_id" uuid not null,
+"category_id" uuid not null);
+
+create table public."address"("created_at" TIMESTAMP not null default now(),
+"updated_at" TIMESTAMP not null default now(),
+"deleted_at" TIMESTAMP,
+"id" uuid not null default uuid_generate_v4(),
+"street" character varying not null,
+"city" character varying not null,
+"state" character varying not null,
+"pincode" character varying not null,
+"user_id" uuid not null ,
+constraint "PK_3c2bc72f03fd5abbbc5ac169492" primary key ("id"));
+
+
+create table public."order"("created_at" TIMESTAMP not null default now(),
+"updated_at" TIMESTAMP not null default now(),
+"deleted_at" TIMESTAMP,
+"id" uuid not null default uuid_generate_v4(),
+"user_id" uuid not null,
+"address_id" uuid not null,
+constraint "PK_3c2bc72f03fd5abbbc5ac169493" primary key ("id"));
+drop table "order";
+
+create table public."order_product"(
+"order_id" uuid not null,
+"product_id" uuid not null,
+"count" integer);
+
+insert  into "product" ("name",
+"description",
+"price",
+"sku") values ('product1','description1',1000,'abcd123'),
+('product2','description2',2000,'abcd124'),
+('product3','description3',3000,'abcd125'),
+('product4','description4',4000,'abcd126'),
+('product5','description5',5000,'abcd127');
+
+insert into "product_category" ("name") values ('apparel'),('footwear'),('sports'),('casuals');
+insert into "product_map_category" values ('e200e241-6caf-4d14-a378-b14aeeb9f7b5','ba893ef5-bc97-4950-aeae-13b358a111c9');
+insert into "product_map_category" values ('e200e241-6caf-4d14-a378-b14aeeb9f7b5','0350c194-4903-474b-9641-66736d5a9bd4');
+insert into "address"("street","city","state","pincode","user_id") values ('street1','city1','state1','686513','ca4fd0f2-f4af-4ed3-8fcb-a0fde65aa71d'),
+('street2','city2','state2','686514','1a45bdf1-954f-4fb0-804c-ad8e2bceb255'),
+('street3','city3','state3','686515','6cc9a918-b857-43f5-8c8e-46fe15cd595f');
+
+insert into "order" ("user_id","address_id") values ('6e9b15a6-0310-4c25-8054-814117cd10ce','ca4fd0f2-f4af-4ed3-8fcb-a0fde65aa71d'),
+('d5ab9d2b-110c-453d-9528-cf6c2926c60a','1a45bdf1-954f-4fb0-804c-ad8e2bceb255'),
+('7a56ddaa-f198-48c1-98c8-d4eefb349cf5','6cc9a918-b857-43f5-8c8e-46fe15cd595f');
+
+insert into "order_product" values ('8c1818c6-3edd-42db-b0b8-5f0a8b62fb21','e200e241-6caf-4d14-a378-b14aeeb9f7b5',1),
+('b605e51f-2463-4443-bc2f-22961896e444','9baaee8c-7c75-4902-b8dc-3107fdcb4969',2),
+('dbefee04-83c8-403a-9246-1b8d9b0a0106','fa0369cc-1975-4631-9020-063b76323704',3);
