@@ -85,3 +85,8 @@ insert into "order" ("user_id","address_id") values ('6e9b15a6-0310-4c25-8054-81
 insert into "order_product" values ('8c1818c6-3edd-42db-b0b8-5f0a8b62fb21','e200e241-6caf-4d14-a378-b14aeeb9f7b5',1),
 ('b605e51f-2463-4443-bc2f-22961896e444','9baaee8c-7c75-4902-b8dc-3107fdcb4969',2),
 ('dbefee04-83c8-403a-9246-1b8d9b0a0106','fa0369cc-1975-4631-9020-063b76323704',3);
+
+In product table,indexing can be added to name
+In order table indexing can be added to order_user_id
+In product_category indexing can be added to product_category
+
